@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>Walima Invitation | Mamluk Ali & Rumana Perween</title>
-    <meta name="description" content="You are invited to the Walima ceremony on 21st December 2025 at 1 PM at our residence, Hosseni Mohalla, Binjharpur, Jajpur.">
+    <meta name="description"
+        content="You are invited to the Walima ceremony on 21st December 2025 at 1 PM at our residence, Hosseni Mohalla, Binjharpur, Jajpur.">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         :root {
@@ -42,6 +43,62 @@
             margin: 10px auto;
             position: relative;
             background: #fdf9f1;
+            overflow: hidden;
+        }
+
+        /* soft floral / petal background */
+        .petal {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 60% 40% 65% 35%;
+            background: radial-gradient(circle at 30% 30%,
+                    rgba(255, 255, 255, 0.9),
+                    rgba(201, 161, 90, 0.18));
+            opacity: 0.5;
+            filter: blur(0.4px);
+            animation: floatSlow 24s linear infinite;
+            z-index: 0;
+        }
+
+        .petal.p1 {
+            top: -40px;
+            left: -20px;
+        }
+
+        .petal.p2 {
+            top: 40%;
+            right: -50px;
+            animation-delay: 5s;
+            transform: scale(0.9) rotate(12deg);
+        }
+
+        .petal.p3 {
+            bottom: -50px;
+            left: 20%;
+            animation-delay: 10s;
+            transform: scale(1.1) rotate(-8deg);
+        }
+
+        .petal.p4 {
+            top: 15%;
+            right: 35%;
+            animation-delay: 15s;
+            transform: scale(0.8) rotate(18deg);
+        }
+
+        @keyframes floatSlow {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) translateX(8px) rotate(8deg);
+            }
+
+            100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
         }
 
         .corner {
@@ -50,6 +107,7 @@
             border-color: var(--accent);
             border-style: solid;
             position: absolute;
+            z-index: 2;
         }
 
         .corner.tl {
@@ -78,6 +136,8 @@
 
         main {
             padding: 22px 10px 28px;
+            position: relative;
+            z-index: 3;
         }
 
         @media (min-width: 600px) {
@@ -112,7 +172,45 @@
             letter-spacing: 0.16em;
             text-transform: uppercase;
             color: var(--primary);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+        }
+
+        /* small floral underline */
+        .hero-ornament {
+            width: 110px;
+            height: 18px;
+            margin: 0 auto 10px;
+            position: relative;
+        }
+
+        .hero-ornament::before,
+        .hero-ornament::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent));
+        }
+
+        .hero-ornament::before {
+            left: 0;
+        }
+
+        .hero-ornament::after {
+            right: 0;
+            transform: scaleX(-1);
+        }
+
+        .hero-ornament span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 10px;
+            height: 10px;
+            border-radius: 60% 40% 60% 40%;
+            border: 1px solid var(--accent);
         }
 
         .names {
@@ -123,13 +221,64 @@
             margin-bottom: 10px;
         }
 
-        .names span.and {
+        .names.names-vertical {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.1;
+        }
+
+        .names.names-vertical .name-top,
+        .names.names-vertical .name-bottom {
             display: block;
-            font-size: clamp(1rem, 0.8rem + 0.5vw, 1.2rem);
-            color: var(--accent);
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            margin: 2px 0;
+        }
+
+        .names.names-vertical .name-top {
+            margin-bottom: 4px;
+        }
+
+        .names.names-vertical .name-bottom {
+            margin-top: 4px;
+        }
+
+        /* bigger animated heart between names */
+        .names .big-heart {
+            width: 26px;
+            height: 26px;
+            font-size: 1rem;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: heartBeat 1.6s ease-in-out infinite;
+            box-shadow: 0 0 0 0 rgba(255, 155, 115, 0.6);
+        }
+
+        footer span.heart-footer {
+            display: inline-block;
+            margin: 0 2px;
+            animation: heartBeat 1.8s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        @keyframes heartBeat {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 155, 115, 0.6);
+            }
+
+            60% {
+                transform: scale(1.08);
+                box-shadow: 0 0 0 12px rgba(255, 155, 115, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 155, 115, 0);
+            }
         }
 
         .hero-subtext {
@@ -273,6 +422,24 @@
             padding: 16px 18px;
             box-shadow: var(--shadow-soft);
             border: 1px solid rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* subtle inner floral glow on cards */
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                    rgba(201, 161, 90, 0.18),
+                    transparent 60%);
+            opacity: 0.7;
         }
 
         .card-header {
@@ -339,10 +506,18 @@
             cursor: pointer;
             box-shadow: var(--shadow-soft);
             text-decoration: none;
+            transition: transform 0.18s ease, box-shadow 0.18s ease,
+                background-color 0.18s ease;
         }
 
         .map-button span {
             margin-right: 4px;
+        }
+
+        .map-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+            background-color: #126652;
         }
 
         .map-helper {
@@ -381,6 +556,7 @@
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .btn {
@@ -391,6 +567,7 @@
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
 
         .btn-call {
@@ -402,6 +579,11 @@
         .btn-wa {
             background-color: var(--primary);
             color: #ffffff;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
         }
 
         /* Save & Share buttons */
@@ -458,6 +640,12 @@
 
 <body>
     <div class="page-border">
+        <!-- soft floral/petal shapes -->
+        <div class="petal p1"></div>
+        <div class="petal p2"></div>
+        <div class="petal p3"></div>
+        <div class="petal p4"></div>
+
         <div class="corner tl"></div>
         <div class="corner tr"></div>
         <div class="corner bl"></div>
@@ -469,11 +657,14 @@
                 <div class="bismillah">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
                 <div class="hero-title">Walima Invitation</div>
 
-                <div class="names">
-                    Sk Mamluk Ali
-                    <span class="and">&amp;</span>
-                    Rumana Perween
+                <div class="hero-ornament"><span></span></div>
+
+                <div class="names names-vertical">
+                    <span class="name-top">Sk Mamluk Ali</span>
+                    <span class="heart big-heart">❤</span>
+                    <span class="name-bottom">Rumana Perween</span>
                 </div>
+
 
                 <p class="hero-subtext">
                     Together with their families, they cordially invite you to the Walima
@@ -589,12 +780,10 @@
 
                             <div class="contact-label">Phone</div>
                             <div class="phone">
-                                <!-- Replace with real number -->
                                 +91-8763299493
                             </div>
 
                             <div class="btn-row">
-                                <!-- update tel: and wa.me with real number -->
                                 <a class="btn btn-call" href="tel:+918763299493">Call</a>
                                 <a class="btn btn-wa" href="https://wa.me/917992577417" target="_blank"
                                     rel="noopener noreferrer">WhatsApp</a>
@@ -619,14 +808,14 @@
             </section>
 
             <footer class="fade-in">
-                Crafted with ❤️ by Adnan for the Walima of
+                Crafted with <span class="heart-footer">❤️</span> by Adnan for the Walima of
                 <strong>Mamluk &amp; Rumana</strong>
             </footer>
         </main>
     </div>
 
     <!-- Hidden audio (no controls) -->
-    <audio id="bg-audio" src="background-nasheed.mp3" loop></audio>
+    <audio id="bg-audio" src="background-nasheed.mp3"></audio>
 
     <script>
         // Countdown
@@ -711,13 +900,11 @@
             if (!btn) return;
 
             btn.addEventListener("click", function () {
-                // Basic event details
                 const summary = "Walima of Mamluk & Rumana";
                 const description =
                     "Walima ceremony of Mamluk Ali and Rumana Perween at our residence, Hosseni Mohalla, Binjharpur, Jajpur.";
                 const location = "Hosseni Mohalla, Binjharpur, Jajpur";
 
-                // Event time: 21 Dec 2025, 13:00–16:00 (local time, no timezone/Z)
                 const dtStart = "20251221T130000";
                 const dtEnd = "20251221T160000";
 
@@ -796,4 +983,5 @@
         })();
     </script>
 </body>
+
 </html>
